@@ -1,101 +1,193 @@
-import Image from "next/image";
+import Tabs from "../components/Tabs/Tabs";
+
+const Content1 = () => {
+        const dataList = [
+            {
+                "user": {
+                    "gender":"0",
+                    "avatar":"/images/avatar.png",
+                    "name": "嘻嘻哈哈",
+                    "year": "95年",
+                    "location": "北京",
+                    "degree": "硕士",
+                    "field": "教育/科研"
+                },
+                "description": "新人报道，多多关照！个人背景：95年白羊座。本科大气科学，算是小众，毕业后央企工作，京户，几年后辞职考研，美国呆了半年，今年北大毕业入职另一家央企，新能源行业。\n 经历与规划：热爱自然，义无反顾选...查看全文",
+                "images": [
+                    {
+                        "src": "/images/p1.jpg",
+                    },
+                    {
+                        "src": "/images/p2.jpg",
+                    },
+                    {
+                        "src": "/images/p3.jpg",
+                    },
+                    {
+                        "src": "/images/p4.jpg",
+                    }
+                ],
+                "postTime": "21小时前",
+                "stats": {
+                    "shares": 82,
+                    "likes": 424
+                }
+            },
+            {
+                "user": {
+                    "gender":"1",
+                    "avatar":"/images/avatar.png",
+                    "name": "拉风金额",
+                    "year": "95年",
+                    "location": "上海",
+                    "degree": "硕士",
+                    "field": "教育/科研"
+                },
+                "description": "新人报道，多多关照！个人背景：95年白羊座。本科大气科学，算是小众，毕业后央企工作，京户，几年后辞职考研，美国呆了半年，今年北大毕业入职另一家央企，新能源行业。\n 经历与规划：热爱自然，义无反顾选...查看全文",
+                "images": [
+                    {
+                        "src": "/images/p1.jpg",
+                    },
+                    {
+                        "src": "/images/p2.jpg",
+                    },
+                    {
+                        "src": "/images/p3.jpg",
+                    },
+                    {
+                        "src": "/images/p4.jpg",
+                    }
+                ],
+                "postTime": "21小时前",
+                "stats": {
+                    "shares": 82,
+                    "likes": 424
+                }
+            }
+        ]
+
+    return(
+        <div className={`h-[calc(100vh-120px)] overflow-auto px-5`}>
+            <div className="overflow-x-auto flex items-center py-4 scrollbar-hide">
+                <div className="flex flex-nowrap px-2">
+                    <div
+                        className={`flex flex-col items-start justify-between p-4 rounded-lg w-[130px] h-[80px] bg-[#e2c19d] text-white shadow-lg`}
+                    >
+                        {/* 标题 */}
+                        <div>
+                            <p className="text-sm font-bold">我的说明书</p>
+                            <p className="text-xs opacity-80">manual</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="flex flex-nowrap px-2">
+                    <div
+                        className={`flex flex-col items-start justify-between p-4 rounded-lg w-[130px] h-[80px] bg-[#9badfd] text-white shadow-lg`}
+                    >
+                        {/* 标题 */}
+                        <div>
+                            <p className="text-sm font-bold">我的说明书</p>
+                            <p className="text-xs opacity-80">manual</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="flex flex-nowrap px-2">
+                    <div
+                        className={`flex flex-col items-start justify-between p-4 rounded-lg w-[130px] h-[80px] bg-[#ff88c0] text-white shadow-lg`}
+                    >
+                        {/* 标题 */}
+                        <div>
+                            <p className="text-sm font-bold">我的说明书</p>
+                            <p className="text-xs opacity-80">manual</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-10">
+                {dataList.map((item, index) => {
+                    return (
+                        <div className="bg-white  mb-6 flex items-start gap-x-4" key={index}>
+                            <div className="flex-shrink-0">
+                                <img src={item.user.avatar} alt="" className="w-[40px] h-[40px] rounded-full"/>
+                            </div>
+                            <div>
+                                <div className="flex flex-col mb-4">
+                                <div className="flex items-center">
+                                        <h2 className="text-xl font-semibold mr-2">{item.user.name}</h2>
+                                        <span>
+                                            {
+                                                item.user.gender === "1" ?
+                                                    <i className="ri-men-line text-[#56a8f5]"></i> :
+                                                    <i className="ri-women-line text-[#e095b1]"></i>
+                                            }
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="text-gray-600">{item.user.year} · {item.user.location}</span>
+                                        <span
+                                            className="text-gray-600 ml-2">{item.user.degree} · {item.user.field}</span>
+                                    </div>
+                                </div>
+                                <p className="text-gray-700 mb-4 whitespace-pre-line">{item.description}</p>
+                                <div className="grid grid-cols-3 gap-2 mb-4 rounded-lg overflow-hidden">
+                                    {item.images.map((image, index) => (
+                                        <img key={index} src={image.src} className=""
+                                             alt={`Image ${index + 1}`}/>
+                                    ))}
+                                </div>
+                                <div className="flex justify-between items-center">
+                                    <span className="text-gray-600">{item.postTime}</span>
+                                </div>
+                                <div className="flex justify-between items-center mt-4">
+                                    <div className="mr-4 text-gray-600 flex items-center gap-x-1">
+                                        <i className="ri-share-box-line"></i>
+                                        <span>{item.stats.shares}</span>
+                                    </div>
+                                    <div className="mr-4 text-gray-600 flex items-center gap-x-1">
+                                        <i className="ri-chat-2-line text-lg"></i>
+                                        <span>{item.stats.shares}</span>
+                                    </div>
+
+                                    <div className="mr-4 text-gray-600 flex items-center gap-x-1">
+                                        <i className="ri-heart-3-line"></i>
+                                        <span>{item.stats.likes}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+const Content2 = () => {
+    return (
+        <div className="h-[calc(100vh-120px)] overflow-auto px-5">
+
+            <div className="h-full flex justify-center items-center">
+                <div className="flex flex-col items-center">
+                    <img src="/images/CharcoDirections.png" alt=""/>
+                    <button className="bg-[#179a7b] text-white px-10 py-2 rounded-full">逛一逛</button>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    const tab = [{label: '热门', content: <Content1/>}, {label: '关注', content: <Content2/>}]
+    return (
+        <div className="">
+            <main className="">
+            <Tabs tabs={tab} fixed={true}/>
+            </main>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
